@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 复制按��点击事件
+    // 复制按钮点击事件
     document.getElementById('copy').addEventListener('click', function() {
         const textarea = document.getElementById('result');
         textarea.select();
@@ -170,14 +170,22 @@ function generateComment(name, strengths, improvements, style) {
     // 第一段：优点评价
     if (strengths.length > 0) {
         comment += studentName;
-        const strengthTexts = strengths.map(s => templates.strengths.content[s] || s);
+        const strengthTexts = strengths.map(s => {
+            const options = templates.strengths.content[s];
+            return Array.isArray(options) ? 
+                options[Math.floor(Math.random() * options.length)] : s;
+        });
         comment += "在学习过程中，" + strengthTexts.join("，") + "。\n\n";
     }
     
     // 第二段：待改善部分
     if (improvements.length > 0) {
         const prefix = templates.improvements.prefix[Math.floor(Math.random() * templates.improvements.prefix.length)];
-        const improvementTexts = improvements.map(i => templates.improvements.content[i] || i);
+        const improvementTexts = improvements.map(i => {
+            const options = templates.improvements.content[i];
+            return Array.isArray(options) ? 
+                options[Math.floor(Math.random() * options.length)] : i;
+        });
         comment += prefix + improvementTexts.join("，") + "。\n\n";
     }
     
