@@ -1,0 +1,260 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* 顶部导航样式 */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+/* 主要内容区样式 */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+/* 表单元素样式 */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.dimension-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.dimension-item {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 1rem 0;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* 结果区域样式 */
+textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dimension-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        margin-top: 1rem;
+    }
+}
+
+/* 工具类 */
+.hidden {
+    display: none;
+}
+
+/* 添加历史记录相关样式 */
+.history-controls {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.history-controls button {
+    flex: 1;
+    max-width: 200px;
+}
+
+#downloadHistory {
+    background-color: #2196F3;
+}
+
+#downloadHistory:hover {
+    background-color: #1976D2;
+}
+
+#clearHistory {
+    background-color: #f44336;
+}
+
+#clearHistory:hover {
+    background-color: #d32f2f;
+}
+
+.history-item {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    position: relative;
+}
+
+.history-item .comment {
+    margin-bottom: 0.5rem;
+}
+
+.history-item .meta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.history-item .actions {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.history-item .actions button {
+    padding: 0.3rem 0.8rem;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* 导航链接激活状态 */
+nav ul li a.active {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+}
+
+/* 添加维度区域的样式 */
+.dimension-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.dimension-section h3 {
+    margin-bottom: 1rem;
+    color: #2196F3;
+}
+
+/* 优点和待改善区域的不同样式 */
+.dimension-section:first-child h3 {
+    color: #4CAF50;
+}
+
+.dimension-section:last-child h3 {
+    color: #FF5722;
+}
+
+/* 帮助页面样式 */
+.help-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.help-content h3 {
+    color: #2196F3;
+    margin: 2rem 0 1rem;
+}
+
+.help-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.help-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* 反馈区域样式 */
+.feedback-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.feedback-section h3 {
+    color: #FF5722;
+}
+
+.feedback-section a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.feedback-section a:hover {
+    text-decoration: underline;
+}
+
+.feedback-note {
+    margin-top: 1rem;
+    color: #666;
+    font-style: italic;
+} 

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一键写评语工具</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/icons/pencil-square.svg">
+    <meta name="description" content="一键生成学生评语，帮助老师快速完成评价工作">
+    <meta name="keywords" content="评语生成器,学生评语,教师工具">
+    <meta name="author" content="你的名字">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header>
+        <nav>
+            <h1>一键写评语工具</h1>
+            <ul>
+                <li><a href="#generator">主页</a></li>
+                <li><a href="#history">历史记录</a></li>
+                <li><a href="#help">使用帮助</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main>
+        <!-- 评语生成区 -->
+        <section id="generator">
+            <div class="input-group">
+                <label for="studentName">学生姓名（选填）：</label>
+                <input type="text" id="studentName" placeholder="不填则生成通用评语">
+            </div>
+
+            <div class="dimensions">
+                <!-- 优点部分 -->
+                <div class="dimension-section">
+                    <h3>优点（可多选）：</h3>
+                    <div class="dimension-grid">
+                        <!-- 学习成绩 -->
+                        <div class="dimension-item">
+                            <h4>学习成绩</h4>
+                            <label><input type="checkbox" name="strengths-grade" value="优秀"> 优秀</label>
+                            <label><input type="checkbox" name="strengths-grade" value="良好"> 良好</label>
+                        </div>
+                        
+                        <!-- 专注度 -->
+                        <div class="dimension-item">
+                            <h4>专注度</h4>
+                            <label><input type="checkbox" name="strengths-focus" value="高度专注"> 高度专注</label>
+                            <label><input type="checkbox" name="strengths-focus" value="一般专注"> 一般专注</label>
+                        </div>
+                        
+                        <!-- 同学关系 -->
+                        <div class="dimension-item">
+                            <h4>同学关系</h4>
+                            <label><input type="checkbox" name="strengths-relationship" value="积极合作"> 积极合作</label>
+                            <label><input type="checkbox" name="strengths-relationship" value="友善相处"> 友善相处</label>
+                        </div>
+                        
+                        <!-- 课堂参与 -->
+                        <div class="dimension-item">
+                            <h4>课堂参与</h4>
+                            <label><input type="checkbox" name="strengths-participation" value="主动发言"> 主动发言</label>
+                        </div>
+                        
+                        <!-- 责任心和自律性 -->
+                        <div class="dimension-item">
+                            <h4>责任心和自律性</h4>
+                            <label><input type="checkbox" name="strengths-responsibility" value="很有责任心"> 很有责任心</label>
+                            <label><input type="checkbox" name="strengths-responsibility" value="较为自律"> 较为自律</label>
+                        </div>
+                        
+                        <!-- 创新思维 -->
+                        <div class="dimension-item">
+                            <h4>创新思维</h4>
+                            <label><input type="checkbox" name="strengths-innovation" value="思维活跃"> 思维活跃</label>
+                            <label><input type="checkbox" name="strengths-innovation" value="有创意"> 有创意</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 待改善部分 -->
+                <div class="dimension-section">
+                    <h3>待改善（可多选）：</h3>
+                    <div class="dimension-grid">
+                        <!-- 学习成绩 -->
+                        <div class="dimension-item">
+                            <h4>学习成绩</h4>
+                            <label><input type="checkbox" name="improvements-grade" value="需要提升"> 需要提升</label>
+                            <label><input type="checkbox" name="improvements-grade" value="偏科"> 偏科</label>
+                        </div>
+                        
+                        <!-- 专注度 -->
+                        <div class="dimension-item">
+                            <h4>专注度</h4>
+                            <label><input type="checkbox" name="improvements-focus" value="易分心"> 易分心</label>
+                        </div>
+                        
+                        <!-- 同学关系 -->
+                        <div class="dimension-item">
+                            <h4>同学关系</h4>
+                            <label><input type="checkbox" name="improvements-relationship" value="需要改善"> 需要改善</label>
+                        </div>
+                        
+                        <!-- 课堂参与 -->
+                        <div class="dimension-item">
+                            <h4>课堂参与</h4>
+                            <label><input type="checkbox" name="improvements-participation" value="参与度低"> 参与度低</label>
+                        </div>
+                        
+                        <!-- 责任心和自律性 -->
+                        <div class="dimension-item">
+                            <h4>责任心和自律性</h4>
+                            <label><input type="checkbox" name="improvements-responsibility" value="需要督促"> 需要督促</label>
+                        </div>
+                        
+                        <!-- 创新思维 -->
+                        <div class="dimension-item">
+                            <h4>创新思维</h4>
+                            <label><input type="checkbox" name="improvements-innovation" value="思维待开发"> 思维待开发</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="style-select">
+                <h3>评语风格：</h3>
+                <label><input type="radio" name="style" value="praise" checked> 表扬型</label>
+                <label><input type="radio" name="style" value="encourage"> 鼓励型</label>
+                <label><input type="radio" name="style" value="suggest"> 建议型</label>
+            </div>
+
+            <button id="generate">生成评语</button>
+
+            <div class="result">
+                <h3>评语结果：</h3>
+                <textarea id="result" readonly></textarea>
+                <button id="copy">复制评语</button>
+            </div>
+        </section>
+
+        <!-- 历史记录区 -->
+        <section id="history" class="hidden">
+            <h2>历史记录</h2>
+            <div class="history-controls">
+                <button id="downloadHistory">下载全部</button>
+                <button id="clearHistory">清空历史</button>
+            </div>
+            <div class="history-list">
+                <!-- 历史记录将通过 JavaScript 动态添加 -->
+            </div>
+        </section>
+
+        <!-- 使用帮助区 -->
+        <section id="help" class="hidden">
+            <h2>使用帮助</h2>
+            <div class="help-content">
+                <h3>使用说明</h3>
+                <ol>
+                    <li>输入学生姓名（选填）</li>
+                    <li>在"优点"和"待改善"中选择评价维度（可多选）</li>
+                    <li>选择评语风格（表扬型/鼓励型/建议型）</li>
+                    <li>点击生成按钮</li>
+                    <li>复制或修改评语</li>
+                </ol>
+
+                <div class="feedback-section">
+                    <h3>意见反馈</h3>
+                    <p>如果您在使用过程中遇到问题或有任何建议：</p>
+                    <ol>
+                        <li>请详细描述您遇到的问题或建议</li>
+                        <li>如可能，请附上问题截图</li>
+                        <li>发送邮件至：<a href="mailto:641200360@qq.com">641200360@qq.com</a></li>
+                    </ol>
+                    <p class="feedback-note">我们会认真阅读每一条反馈，并尽快进行优化和改进。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="templates.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
