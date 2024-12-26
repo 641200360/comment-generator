@@ -52,50 +52,33 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 生成评语
     generateBtn.addEventListener('click', function() {
-        // 获取姓名（可以为空）
-        const name = studentNameInput.value.trim();
-        
-        // 获取选中的评语风格
+        const name = studentNameInput.value;
         const style = document.querySelector('input[name="style"]:checked').value;
         
-        // 获取选中的维度
-        const selectedDimensions = {};
-        document.querySelectorAll('.dimension-item input:checked').forEach(input => {
-            const dimensionName = input.name;
-            const value = input.value;
-            if (!selectedDimensions[dimensionName]) {
-                selectedDimensions[dimensionName] = [];
-            }
-            selectedDimensions[dimensionName].push(value);
+        // 收集选中的优点和待改善项
+        const strengths = [];
+        const improvements = [];
+        
+        document.querySelectorAll('input[name^="strengths-"]:checked').forEach(input => {
+            strengths.push(input.value);
         });
         
-        // 检查是否选择了至少一个维度
-        if (Object.keys(selectedDimensions).length === 0) {
-            alert('请至少选择一个评价维度');
-            return;
-        }
+        document.querySelectorAll('input[name^="improvements-"]:checked').forEach(input => {
+            improvements.push(input.value);
+        });
         
         // 生成评语
-        let comment = generateComment(name, style, selectedDimensions);
-        resultArea.value = comment;
+        let comment = generateComment(name, strengths, improvements, style);
         
-        // 生成评语后，保存到历史记录
-        if (comment) {
-            saveToHistory({
-                name: name || '匿名',
-                comment: comment,
-                timestamp: new Date().toISOString(),
-                dimensions: selectedDimensions,
-                style: style
-            });
-        }
+        // 显示结果
+        resultArea.value = comment;
     });
     
-    // 复制评语
+    // 复制功能
     copyBtn.addEventListener('click', function() {
-        resultArea.select();
+        const textarea = document.getElementById('result');
+        textarea.select();
         document.execCommand('copy');
-        alert('评语已复制到剪贴板');
     });
     
     // 清空历史记录
@@ -122,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         historyList.innerHTML = '';
         
         if (history.length === 0) {
-            historyList.innerHTML = '<p class="empty-message">暂无历史记录</p>';
+            historyList.innerHTML = '<p class="empty-message">暂无历��记录</p>';
             return;
         }
         
@@ -201,7 +184,7 @@ function generateComment(name, style, dimensions) {
     const template = templates[style];
     const studentName = name ? name + '同学' : '这位同学';
     
-    // 分别获取优点和待改善的评价
+    // 分别取优点和待改善的评价
     const strengths = [];
     const improvements = [];
     
@@ -235,7 +218,7 @@ function generateComment(name, style, dimensions) {
         if (style === 'praise') {
             comment += '同时，希望在以下方面继续努力：';
         } else if (style === 'encourage') {
-            comment += '接下来，我们可以一起努力改善：';
+            comment += '接下来，我们可以一���努力改善：';
         } else {
             comment += '建议在以下方面多加注意：';
         }
