@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 复制按钮点击事件
+    // 复制按��点击事件
     document.getElementById('copy').addEventListener('click', function() {
         const textarea = document.getElementById('result');
         textarea.select();
@@ -175,21 +175,28 @@ function generateComment(name, strengths, improvements, style) {
             return Array.isArray(options) ? 
                 options[Math.floor(Math.random() * options.length)] : s;
         });
-        comment += "在学习过程中，" + strengthTexts.join("，") + "。\n\n";
+        comment += "在学习过程中，" + strengthTexts.join("，") + "。";
     }
     
-    // 第二段：待改善部分
+    // 第二段：待改善部分（优化过渡）
     if (improvements.length > 0) {
-        const prefix = templates.improvements.prefix[Math.floor(Math.random() * templates.improvements.prefix.length)];
+        const transitionPhrases = [
+            "不过也发现",
+            "同时也注意到",
+            "但还需要注意",
+            "建议在此基础上",
+            "希望接下来能够"
+        ];
+        const transition = transitionPhrases[Math.floor(Math.random() * transitionPhrases.length)];
         const improvementTexts = improvements.map(i => {
             const options = templates.improvements.content[i];
             return Array.isArray(options) ? 
                 options[Math.floor(Math.random() * options.length)] : i;
         });
-        comment += prefix + improvementTexts.join("，") + "。\n\n";
+        comment += transition + improvementTexts.join("，") + "。";
     }
     
-    // 第三段：祝福语
+    // 第三段：祝福语（直接连接）
     const wish = templates.wishes[Math.floor(Math.random() * templates.wishes.length)];
     comment += wish;
     
